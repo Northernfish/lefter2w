@@ -10,9 +10,9 @@ import NotFound from '../components/404.vue';
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-    { path: '/', component: Home },
-    { path: '/about', component: () => import(`../views/About.vue`) },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+    { path: '/', name:'', component: Home, meta:{title: '首页'} },
+    { path: '/about', name:'',  meta:{title: '关于'}, component: () => import(`../views/About.vue`) },
+    { path: '/:pathMatch(.*)*',  meta:{title: '404'}, name: 'NotFound', component: NotFound },
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
@@ -25,6 +25,9 @@ const router = createRouter({
 
 // 全局前置守卫
 router.beforeEach((to, from, next) => {
+    if (to.meta.title) {
+        document.title = `${to.meta.title}`;
+    }
     next();
 });
 

@@ -46,16 +46,47 @@ import { createStore } from 'vuex'
 const mutations = {
     increment (state) {
         state.count++
+    },
+    addToCounter(state, payload) {
+        state.counter += payload;
+        state.history.push(state.counter)
+    },
+    subtractFromCounter(state, payload) {
+        state.counter -= payload;
+        state.history.push(state.counter)
     }
 }
+
+const actions = {
+    async addRandomNumber(context) {
+        let data = await axios.get("https://www.random.org/integers/?num=1&min=-1000&max=1000&col=1&base=10&format=plain&rnd=new")
+        context.commit('addToCounter', data.data)
+    }
+}
+
+const getters = {
+    activeIndexes: (state) => (payload) => {
+        let indexes = [];
+        state.history.forEach((number, index) => {
+            if(number === payload) {
+                indexes.push(index)
+            }
+        });
+        return indexes
+    }
+}
+
 // Create a new store instance.
 const store = createStore({
     state () {
         return {
-            count: 0
+            count: 0,
+            history: [0]
         }
     },
-    mutations
+    mutations,
+    actions,
+    getters
 })
 
 export default store;
