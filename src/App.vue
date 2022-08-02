@@ -5,6 +5,7 @@
         <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link> |
+        <router-link to="/metaverse">Metaverse</router-link> |
         <router-link :to="{name:'NotFound'}">NotFound</router-link>
     </div>
     <!-- 路由出口 -->

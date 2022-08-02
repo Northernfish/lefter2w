@@ -26,7 +26,7 @@
             }, 100)
 
             onMounted(() => {
-                console.log('mounted!')
+                // console.log('mounted!')
             })
             onUpdated(() => {
                 console.log('updated!')

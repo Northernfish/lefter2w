@@ -12,6 +12,7 @@ import NotFound from '../components/404.vue';
 const routes = [
     { path: '/', name:'', component: Home, meta:{title: '首页'} },
     { path: '/about', name:'',  meta:{title: '关于'}, component: () => import(`../views/About.vue`) },
+    { path: '/metaverse', name:'',  meta:{title: '元宇宙'}, component: () => import(`../views/Metaverse.vue`) },
     { path: '/:pathMatch(.*)*',  meta:{title: '404'}, name: 'NotFound', component: NotFound },
 ]
 

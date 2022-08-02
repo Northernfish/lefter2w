@@ -16,14 +16,21 @@ export default defineConfig({
     base: './',
     // 静态资源服务的文件夹, 默认"public"
     publicDir: 'public',
+    // 公共样式
     css: {
-        postcss: {
-            plugins: [
-                require('autoprefixer')
-            ]
-        },
-        sass: {
-            implementation: require('sass'), // This line must in sass option
+        // postcss: {
+        //     plugins: [
+        //         require('autoprefixer')
+        //     ]
+        // },
+        // sass: {
+        //     implementation: require('sass'), // This line must in sass option
+        // },
+        // 🔥此处添加全局scss🔥
+        preprocessorOptions: {
+            scss: {
+                additionalData: '@import "./src/styles/common.scss";'
+            }
         }
     },
     server: {
